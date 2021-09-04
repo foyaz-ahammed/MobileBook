@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
 import com.play2pay.bookapp.databinding.ActivityDetailBinding
-import com.play2pay.bookapp.models.BookItem
+import com.play2pay.bookapp.repository.entities.BookItem
 
 /**
  * Activity for detail screen
@@ -36,7 +36,7 @@ class DetailActivity: AppCompatActivity() {
 
         //Set image
         Glide.with(binding.root.context)
-            .load(item.image)
+            .load(item.imageUrl)
             .into(binding.image)
 
         binding.authorViews.isVisible = item.author.isNotEmpty()

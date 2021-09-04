@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.play2pay.bookapp.activities.DetailActivity
 import com.play2pay.bookapp.databinding.BookItemBinding
-import com.play2pay.bookapp.models.BookItem
+import com.play2pay.bookapp.repository.entities.BookItem
 
 /**
  * [ListAdapter] to show list of book items
@@ -34,7 +34,7 @@ class BookListAdapter: ListAdapter<BookItem, BookListAdapter.ViewHolder>(DiffCal
             oldItem.title == newItem.title
 
         override fun areContentsTheSame(oldItem: BookItem, newItem: BookItem) =
-            oldItem.image == newItem.image
+            oldItem.imageUrl == newItem.imageUrl
     }
 
     /**
@@ -50,7 +50,7 @@ class BookListAdapter: ListAdapter<BookItem, BookListAdapter.ViewHolder>(DiffCal
 
             //Set image
             Glide.with(binding.root.context)
-                .load(item.image)
+                .load(item.imageUrl)
                 .into(binding.image)
 
             binding.authorViews.isVisible = item.author.isNotEmpty()

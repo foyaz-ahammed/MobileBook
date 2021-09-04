@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.play2pay.bookapp.adapters.BookListAdapter
 import com.play2pay.bookapp.databinding.ActivityMainBinding
-import com.play2pay.bookapp.models.BookItem
+import com.play2pay.bookapp.repository.entities.BookItem
 
 /**
  * Activity for main screen
