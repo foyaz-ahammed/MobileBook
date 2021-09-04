@@ -1,5 +1,6 @@
 package com.play2pay.bookapp.adapters
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
@@ -7,9 +8,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.play2pay.bookapp.activities.DetailActivity
 import com.play2pay.bookapp.databinding.BookItemBinding
 import com.play2pay.bookapp.models.BookItem
-
 
 /**
  * [ListAdapter] to show list of book items
@@ -54,6 +55,16 @@ class BookListAdapter: ListAdapter<BookItem, BookListAdapter.ViewHolder>(DiffCal
 
             binding.authorViews.isVisible = item.author.isNotEmpty()
             binding.author.text = item.author
+
+            binding.rootView.setOnClickListener {
+                binding.rootView.context.let {
+                    val intent = Intent(it, DetailActivity::class.java).apply {
+                        putExtra(DetailActivity.EXTRA_BOOK_ITEM, item)
+                    }
+
+                    it.startActivity(intent)
+                }
+            }
         }
     }
 }
