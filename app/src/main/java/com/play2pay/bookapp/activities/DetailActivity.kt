@@ -3,8 +3,8 @@ package com.play2pay.bookapp.activities
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
-import com.bumptech.glide.Glide
 import com.play2pay.bookapp.databinding.ActivityDetailBinding
+import com.play2pay.bookapp.helper.GlideApp
 import com.play2pay.bookapp.repository.entities.BookItem
 
 /**
@@ -35,7 +35,7 @@ class DetailActivity: AppCompatActivity() {
         binding.title.text = item.title
 
         //Set image
-        Glide.with(binding.root.context)
+        GlideApp.with(binding.root.context)
             .load(item.imageUrl)
             .into(binding.image)
 

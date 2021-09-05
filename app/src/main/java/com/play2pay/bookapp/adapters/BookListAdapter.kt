@@ -7,9 +7,9 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.play2pay.bookapp.activities.DetailActivity
 import com.play2pay.bookapp.databinding.BookItemBinding
+import com.play2pay.bookapp.helper.GlideApp
 import com.play2pay.bookapp.repository.entities.BookItem
 
 /**
@@ -49,7 +49,7 @@ class BookListAdapter: ListAdapter<BookItem, BookListAdapter.ViewHolder>(DiffCal
             binding.title.text = item.title
 
             //Set image
-            Glide.with(binding.root.context)
+            GlideApp.with(binding.root.context)
                 .load(item.imageUrl)
                 .into(binding.image)
 

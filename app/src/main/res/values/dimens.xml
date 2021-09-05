@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="small_image_width">50dp</dimen>
+    <dimen name="small_image_height">80dp</dimen>
     <dimen name="big_image_width">100dp</dimen>
 </resources>

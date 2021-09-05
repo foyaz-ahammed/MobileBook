@@ -21,8 +21,9 @@
         android:layout_marginStart="10dp"
         android:maxLines="3"
         app:layout_constraintStart_toEndOf="@id/image"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/image"
-        tools:text="Harry Potter and the Deathly Hallows" />
+        tools:text="Harry Potter: Complete 8-Film Collection (DVD, 2011, 8-Disc Set)"/>
 
     <TextView
         android:id="@+id/author_label"
