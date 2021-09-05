@@ -8,7 +8,7 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 @JsonClass(generateAdapter = true)
 class BookItem (
-    @Json(name = "") val title: String,
-    @Json(name = "") val imageUrl: String,
-    @Json(name = "") val author: String = "",
+    @Json(name = "title") val title: String,
+    @Json(name = "imageURL") val imageUrl: String = "",
+    @Json(name = "author") val author: String = "",
 ): Parcelable
