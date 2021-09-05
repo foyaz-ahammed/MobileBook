@@ -1,10 +1,11 @@
 package com.play2pay.bookapp.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import com.play2pay.bookapp.adapters.BookListAdapter
 import com.play2pay.bookapp.databinding.ActivityMainBinding
-import com.play2pay.bookapp.repository.entities.BookItem
+import com.play2pay.bookapp.repository.entities.LoadResult
 import com.play2pay.bookapp.viewmodels.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -35,6 +36,12 @@ class MainActivity : AppCompatActivity() {
         //Add observer to book items livedata, and update UI
         viewModel.bookItems.observe(this) {
             adapter.submitList(it)
+        }
+
+        //Add observer to load status
+        viewModel.loading.observe(this) {
+            binding.bookRecyclerview.isVisible = it == LoadResult.SUCCESS
+            binding.progressBar.isVisible = it == LoadResult.LOADING
         }
 
         viewModel.fetchData()
