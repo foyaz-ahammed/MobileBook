@@ -2,6 +2,7 @@ package com.play2pay.bookapp.activities
 
 import android.os.Bundle
 import android.view.Menu
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
@@ -47,6 +48,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.loading.observe(this) {
             binding.bookRecyclerview.isVisible = it == LoadResult.SUCCESS
             binding.progressBar.isVisible = it == LoadResult.LOADING
+            binding.errorViews.isVisible = it == LoadResult.FAIL
         }
 
         if(savedInstanceState == null) viewModel.fetchData()
@@ -74,5 +76,12 @@ class MainActivity : AppCompatActivity() {
         })
 
         return true
+    }
+
+    /**
+     * Called when clicking retry button
+     */
+    fun onRetry(view: View) {
+        viewModel.fetchData()
     }
 }

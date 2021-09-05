@@ -2,4 +2,6 @@
     <string name="app_name">Book Application</string>
     <string name="author_label">Author:</string>
     <string name="search">Search</string>
+    <string name="retry">Retry</string>
+    <string name="error_loading_data">Error loading data</string>
 </resources>
