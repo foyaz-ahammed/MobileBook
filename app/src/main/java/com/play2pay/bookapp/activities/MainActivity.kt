@@ -1,8 +1,11 @@
 package com.play2pay.bookapp.activities
 
 import android.os.Bundle
+import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
+import com.play2pay.bookapp.R
 import com.play2pay.bookapp.adapters.BookListAdapter
 import com.play2pay.bookapp.databinding.ActivityMainBinding
 import com.play2pay.bookapp.repository.entities.LoadResult
@@ -44,6 +47,16 @@ class MainActivity : AppCompatActivity() {
             binding.progressBar.isVisible = it == LoadResult.LOADING
         }
 
-        viewModel.fetchData()
+        if(savedInstanceState == null) viewModel.fetchData()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.options_menu, menu)
+
+        val searchItem = menu!!.findItem(R.id.search)
+        val searchView = searchItem.actionView as SearchView
+        searchView.queryHint = getString(R.string.search)
+
+        return true
     }
 }

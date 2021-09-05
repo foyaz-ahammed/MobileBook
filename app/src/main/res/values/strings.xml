@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Book Application</string>
     <string name="author_label">Author:</string>
+    <string name="search">Search</string>
 </resources>
