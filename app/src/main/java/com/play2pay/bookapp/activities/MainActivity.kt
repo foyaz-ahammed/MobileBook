@@ -26,6 +26,8 @@ class MainActivity : AppCompatActivity() {
     //Adapter variable to connect to the recycler view
     private val adapter = BookListAdapter()
 
+    private var query = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -56,6 +58,20 @@ class MainActivity : AppCompatActivity() {
         val searchItem = menu!!.findItem(R.id.search)
         val searchView = searchItem.actionView as SearchView
         searchView.queryHint = getString(R.string.search)
+
+        searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if(query != newText) {
+                    query = newText?:""
+                    viewModel.search(query)
+                }
+                return true
+            }
+        })
 
         return true
     }

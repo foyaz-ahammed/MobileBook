@@ -14,6 +14,8 @@ import kotlinx.coroutines.launch
  * [ViewModel] for main screen
  */
 class MainViewModel(private val repository: BookRepository): ViewModel() {
+    private var cachedData: List<BookItem>? = null
+
     private val _bookItems = MutableLiveData<List<BookItem>>()
     private val _loading = MutableLiveData<LoadResult>()
 
@@ -30,6 +32,7 @@ class MainViewModel(private val repository: BookRepository): ViewModel() {
         viewModelScope.launch {
             when(val result = repository.getBookItems()) {
                 is DataResult.Success -> {
+                    cachedData = result.data
                     _loading.value = LoadResult.SUCCESS
                     _bookItems.value = result.data
                 }
@@ -38,5 +41,11 @@ class MainViewModel(private val repository: BookRepository): ViewModel() {
                 }
             }
         }
+    }
+
+    fun search(query: String) {
+        _bookItems.value =
+            if(query.isEmpty()) cachedData
+            else cachedData?.filter { it.title.contains(query) || it.author.contains(query) }
     }
 }
