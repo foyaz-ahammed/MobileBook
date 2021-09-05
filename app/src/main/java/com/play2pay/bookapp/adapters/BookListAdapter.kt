@@ -26,6 +26,10 @@ class BookListAdapter: ListAdapter<BookItem, BookListAdapter.ViewHolder>(DiffCal
         holder.bind(item)
     }
 
+    override fun onViewRecycled(holder: ViewHolder) {
+        holder.recycle()
+    }
+
     /**
      * [DiffUtil.ItemCallback] for [BookItem]
      */
@@ -65,6 +69,13 @@ class BookListAdapter: ListAdapter<BookItem, BookListAdapter.ViewHolder>(DiffCal
                     it.startActivity(intent)
                 }
             }
+        }
+
+        /**
+         * Called when the view is recycled in the RecyclerView
+         */
+        fun recycle() {
+            GlideApp.with(binding.root.context).clear(binding.image)
         }
     }
 }

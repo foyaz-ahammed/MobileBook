@@ -9,7 +9,8 @@
     app:cardElevation="3dp"
     app:cardUseCompatPadding="true"
     app:cardCornerRadius="10dp"
-    app:contentPadding="10dp">
+    app:contentPadding="10dp"
+    android:foreground="?attr/selectableItemBackgroundBorderless">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
