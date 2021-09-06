@@ -7,6 +7,7 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.play2pay.bookapp.R
 import com.play2pay.bookapp.activities.DetailActivity
 import com.play2pay.bookapp.databinding.BookItemBinding
 import com.play2pay.bookapp.helper.GlideApp
@@ -52,9 +53,12 @@ class BookListAdapter: ListAdapter<BookItem, BookListAdapter.ViewHolder>(DiffCal
             //Set title
             binding.title.text = item.title
 
-            //Set image
+            //Set image (show unavailable image if url is empty)
             GlideApp.with(binding.root.context)
-                .load(item.imageUrl)
+                .load(
+                    if(item.imageUrl.isNotEmpty()) item.imageUrl
+                    else R.drawable.ic_unavailable
+                )
                 .into(binding.image)
 
             binding.authorViews.isVisible = item.author.isNotEmpty()
