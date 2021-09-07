@@ -22,7 +22,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
  *
  * @see ActivityMainBinding
  */
-class MainActivity : AppCompatActivity()/*, KoinComponent*/ {
+class MainActivity : AppCompatActivity() {
     companion object {
         const val PREF_SEARCH_QUERIES = "pref_search_queries"
     }

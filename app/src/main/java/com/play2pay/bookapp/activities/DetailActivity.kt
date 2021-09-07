@@ -16,6 +16,7 @@ class DetailActivity: AppCompatActivity() {
         const val EXTRA_BOOK_ITEM = "extra_book_item"
     }
 
+    //View binding variable
     private lateinit var binding: ActivityDetailBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

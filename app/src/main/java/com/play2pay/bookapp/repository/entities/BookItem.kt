@@ -5,6 +5,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
 
+/**
+ * Model class for one book item (title, imageUrl, author)
+ */
 @Parcelize
 @JsonClass(generateAdapter = true)
 class BookItem (

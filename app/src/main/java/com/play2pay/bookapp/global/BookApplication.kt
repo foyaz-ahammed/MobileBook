@@ -12,6 +12,7 @@ class BookApplication: Application() {
     override fun onCreate() {
         super.onCreate()
 
+        //Start koin modules
         startKoin {
             androidContext(this@BookApplication)
             modules(networkModule, repositoryModule, viewModelModule, preferenceModule)
