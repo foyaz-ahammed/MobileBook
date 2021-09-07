@@ -3,6 +3,7 @@ package com.play2pay.bookapp.activities
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
+import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
@@ -22,11 +23,12 @@ class MainActivity : AppCompatActivity() {
     private val viewModel by viewModel<MainViewModel>()
 
     //Binding variable
-    lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
 
     //Adapter variable to connect to the recycler view
     private val adapter = BookListAdapter()
 
+    private lateinit var searchAdapter: ArrayAdapter<String>
     private var query = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,17 +63,30 @@ class MainActivity : AppCompatActivity() {
         val searchView = searchItem.actionView as SearchView
         searchView.queryHint = getString(R.string.search)
 
-        searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return false
-            }
+        //Get text view of Search View, and add click listener
+        val textView = searchView.findViewById<SearchView.SearchAutoComplete>(R.id.search_src_text)
+        textView.setOnItemClickListener { _, _, i, _ -> textView.setText(searchAdapter.getItem(i).toString()) }
 
-            override fun onQueryTextChange(newText: String?): Boolean {
+        //Set adapter to add suggestion queries
+        searchAdapter = ArrayAdapter(this, R.layout.dropdown_item_line, ArrayList<String>())
+        searchAdapter.setNotifyOnChange(true)
+        textView.setAdapter(searchAdapter)
+
+        //Add Query text change listener
+        searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(newText: String?): Boolean {
                 if(query != newText) {
                     query = newText?:""
                     viewModel.search(query)
+
+                    if(query != "") searchAdapter.add(query)
                 }
+
                 return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return false
             }
         })
 
