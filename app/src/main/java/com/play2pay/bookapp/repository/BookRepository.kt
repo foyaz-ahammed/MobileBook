@@ -4,12 +4,13 @@ import android.util.Log
 import com.play2pay.bookapp.repository.api.BookAPI
 import com.play2pay.bookapp.repository.entities.BookItem
 import com.play2pay.bookapp.repository.entities.DataResult
+import org.koin.core.component.KoinComponent
 import java.lang.Exception
 
 /**
  * Repository class to load data from network service
  */
-class BookRepository(private val api: BookAPI) {
+class BookRepository(private val api: BookAPI): KoinComponent {
     companion object {
         const val TAG = "BookRepository"
     }
